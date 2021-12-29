@@ -1,12 +1,36 @@
-arch: s390x
-language: ruby
-rvm:
-- 2.6
-deploy:
-  provider: pages
-  local_dir: /docs
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  on:
-    branch: main
+language: java
+
+matrix:
+  include:
+    - os: linux
+      arch: arm64
+      jdk: openjdk11
+    - os: linux
+      arch: s390x
+      jdk: openjdk11
+      addons:
+        apt:
+          update: true
+          packages:
+            - maven
+            - libcppunit-dev
+
+cache:
+  directories:
+  - "$HOME/.m2"
+
+addons:
+  apt:
+    packages:
+    - libcppunit-dev
+
+install:
+  - if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
+     sudo apt-get install maven;
+    fi
+
+script: echo "This is a sample build"
+
+branches:
+  only:
+  - main
