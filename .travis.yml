@@ -1,6 +1,6 @@
 language: java
-distro: focal
-#virt: lxd #optional
+dist: focal
+
 
 matrix:
   include:
@@ -20,11 +20,6 @@ matrix:
 cache:
   directories:
   - "$HOME/.m2"
-
-# addons:
-#   apt:
-#     packages:
-#     - libcppunit-dev
 
 install:
   - if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
