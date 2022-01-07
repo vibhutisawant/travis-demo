@@ -8,7 +8,7 @@ matrix:
       arch: arm64
       jdk: openjdk11
     - os: linux
-      arch: s390x
+      arch: amd64
       jdk: openjdk11
       addons:
         apt:
